@@ -1,13 +1,15 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Misc setup
+echo 'PermitRootLogin prohibit-password' >> /etc/ssh/sshd_config
+
+# Setup pacman
 pacman-key --init
 pacman-key --populate
 pacman -Sy --noconfirm
 
-# echo "Updating manpage database"
-# makewhatis /usr/share/man
-
+# Install AUR packages
 mkdir -p /tmp/aur-build
 
 cd /tmp/aur-build
