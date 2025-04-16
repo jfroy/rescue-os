@@ -3,6 +3,7 @@ set -euo pipefail
 
 # Misc setup
 echo 'PermitRootLogin prohibit-password' >> /etc/ssh/sshd_config
+systemctl enable sshd.service
 
 # Setup pacman
 pacman-key --init
