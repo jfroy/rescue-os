@@ -10,6 +10,7 @@ pacman-key --populate
 pacman -Sy --noconfirm
 
 # Install AUR packages
+pacman -S --noconfirm base-devel linux-headers
 mkdir -p /tmp/aur-build
 
 cd /tmp/aur-build
@@ -24,10 +25,10 @@ gpg --recv-keys 6AD860EED4598027
 env EUID=1000 PACMAN_AUTH=env makepkg -sci --noconfirm
 
 cd /tmp/aur-build
-git clone --depth 1 https://aur.archlinux.org/zfs-dkms-staging-git.git
-cd zfs-dkms-staging-git
-env EUID=1000 PACMAN_AUTH=env makepkg -sc --noconfirm
-pacman -U --noconfirm ./*.pkg.tar.zst
+git clone --depth 1 https://aur.archlinux.org/zfs-linux-lts.git
+cd zfs-linux-lts
+env EUID=1000 PACMAN_AUTH=env makepkg -sci --noconfirm
 
 cd /
 rm -rf /tmp/aur-build
+pacman -Rs --noconfirm base-devel linux-headers
