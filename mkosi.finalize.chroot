@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Enable services in finalize after `systemctl preset-all`
+systemctl enable sshd.service
